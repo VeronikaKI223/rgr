@@ -1,47 +1,38 @@
-#
+# **Welcome to my Project!**
 
-1. Download template
+## **Project Overview**
+This project is part of the course on Applied Programming Technology. It allows users to interact with a database through a web interface. The goal is to provide an easy-to-use platform where users can perform various database operations like CRUD (Create, Read, Update, Delete).
 
-- [Link to preconfigured start.spring.io](https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.3.4&packaging=jar&jvmVersion=21&groupId=ua.cn.stu&artifactId=univer02&name=univer02&description=Spring%20Boot%20project%20for%20university&packageName=ua.cn.stu.univer02&dependencies=native,devtools,docker-compose,modulith,web,data-jdbc,postgresql,spring-ai-vectordb-pgvector,spring-ai-openai,lombok)
-- Unarchive, open folder in terminal and in IDE
-- run -> exception
-- comment openai deps in pom.xml -> run -> no exception
+## **Technologies Used**
 
-2. Start DB via docker run in terminal
-   (if windows -> install WSL2)
-   (if no docker → [download](https://docs.rancherdesktop.io/getting-started/installation/), install, start)
+- **Programming Language**: Java
+- **Markup Language**: HTML
+- **Database Queries**: SQL (Structured Query Language)
+- **Framework**: Spring Boot
 
-   ```
-   docker compose up
-   ```
+## **Features**
 
-3. Configure DB Access in java app
+- **CRUD Operations**: Allows you to perform Create, Read, Update, and Delete operations on the database.
+- **Interactive Web Interface**: The project features a simple web page where users can interact with the database and perform operations.
+- **Responsive Design**: The user interface adapts to different screen sizes, ensuring a seamless experience across devices.
 
-- dockerfile port: "5432:5432”
-- application.properties:
-  ```
-  spring.datasource.url=jdbc:postgresql://localhost:5432/mydatabase
-  spring.datasource.username=myuser
-  spring.datasource.password=secret
-  # # spring.jpa.hibernate.ddl-auto=update
-  # logging.level.org.springframework.jdbc.core=TRACE
-  # logging.level.org.springframework.data=DEBUG
-  ```
+## **How to Use**
 
-4. Install db plugin to IDE OR use other client
+1. **Clone the Repository**:  
+   git clone https://github.com/yourusername/yourproject.git
 
-- intellij - available only commercial or education version
-- eclipse - DBeaver
-- vscode - Database Client + Database Client JDBC
-- linux terminal
-  ```
-  pgcli -p 5432 -h localhost  mydatabase -U myuser -W
-  ```
-5. Init DB
+2. **Set Up the Database**:
+Ensure you have a working database setup. You can configure the database by updating the connection parameters in the application configuration files (replace ${LOGIN} and ${PASSWORD} with your credentials).
 
-- sql file in sql_schema/db_init.sql
+3. **Run the Application**:
+ - Compile and run the Java application (if using a framework like Spring Boot, you can use mvn spring-boot:run).
+ - Access the web page via your browser (http://localhost:9090/home).
 
-6. Access the Application
+4. **Use the Web Interface**:
+You can interact with the database through the web interface, where you can input data or run SQL queries to manage records.
 
-   Visit `http://localhost:9091/home` to open the UI.
+5. **Edit the Code**:
+If you want to add more features or modify the existing ones, feel free to make changes to the Java and HTML code. After making changes, recompile and redeploy.
+
+
 
