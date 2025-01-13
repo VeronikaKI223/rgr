@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редагування існуючої кімнати</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Редагування існуючої кімнати</h1>
+
+        <form th:action="@{/rooms/update/{id}(id=${room.roomId})}" th:object="${room}" method="post" class="form-container">
+            <input type="hidden" th:field="*{roomId}" />
+
+            <label for="roomNumber">Номер кімнати:</label>
+            <input type="text" id="roomNumber" th:field="*{roomNumber}" required />
+            <div th:if="${#fields.hasErrors('roomNumber')}" th:errors="*{roomNumber}" class="error"></div>
+
+            <label for="block">Блок:</label>
+            <input type="text" id="block" th:field="*{block.blockName}" required />
+            <div th:if="${#fields.hasErrors('block.blockName')}" th:errors="*{block.blockName}" class="error"></div>
+
+            <label for="capacity">Скільки людей проживає:</label>
+            <input type="number" id="capacity" th:field="*{capacity}" required />
+            <div th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}" class="error"></div>
+
+            <button type="submit" class="button">Оновити</button>
+        </form>
+        <a href="/rooms" class="button back">Повернутися до загальної таблиці</a>
+    </div>
+</body>
+</html>

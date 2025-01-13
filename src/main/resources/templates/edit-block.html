@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редагування існуючого блоку</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Редагування існуючого блоку</h1>
+
+        <form th:action="@{/blocks/update/{id}(id=${block.blockId})}" th:object="${block}" method="post" class="form-container">
+            <input type="hidden" th:field="*{blockId}" />
+
+            <label for="blockName">Назва:</label>
+            <input type="text" id="blockName" th:field="*{blockName}" required />
+            <div th:if="${#fields.hasErrors('blockName')}" th:errors="*{blockName}" class="error"></div>
+
+            <button type="submit" class="button">Оновити</button>
+        </form>
+        <a href="/blocks" class="button back">Повернутися до загальної таблиці</a>
+    </div>
+</body>
+</html>

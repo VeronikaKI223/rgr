@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Мешканці</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">Мешканці</h1>
+        
+        <div th:if="${isAdmin}">
+            <a href="/residents/add" class="button add-button">Додати нового мешканця</a>
+        </div>
+        
+        <div th:if="${!isAdmin}" class="warning-message">
+            <p style= "color: #b61d1d;" >Ви перебуваєте в режимі перегляду. Для внесення змін потрібні права адміністратора.</p>
+        </div>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Номер у списку</th>
+                    <th>ПІБ</th>
+                    <th>Кімната</th>
+                    <th th:if="${isAdmin}">Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="resident : ${residents}">
+                    <td th:text="${resident.residentId}"></td>
+                    <td th:text="${resident.fullName}"></td>
+                    <td th:text="${resident.room.roomNumber}"></td>
+                    <td th:if="${isAdmin}">
+                        <a th:href="@{/residents/edit/{id}(id=${resident.residentId})}" class="button edit">Редагувати</a>
+                        <a th:href="@{/residents/delete/{id}(id=${resident.residentId})}" class="button delete">Видалити</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <a href="/home" class="button back">Повернутися на головну сторінку</a>
+    </div>
+</body>
+</html>

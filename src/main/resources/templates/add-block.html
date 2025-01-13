@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Додати новий блок</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Додати новий блок</h1>
+        <form th:action="@{/blocks/add}" th:object="${block}" method="post" class="form-container">
+            <label for="blockName">Назва:</label>
+            <input type="text" id="blockName" th:field="*{blockName}" required />
+            <div th:if="${#fields.hasErrors('blockName')}" th:errors="*{blockName}" class="error"></div>
+
+            <button type="submit" class="button">Зберегти</button>
+        </form>
+        <a href="/blocks" class="button back">Повернутися до загальної таблиці</a>
+    </div>
+</body>
+</html>

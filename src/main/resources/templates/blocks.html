@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Блоки</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">Блоки</h1>
+        
+        <!-- Адмінські кнопки -->
+        <div th:if="${isAdmin}">
+            <a href="/blocks/add" class="button add-button">Додати новий блок</a>
+        </div>
+        
+        <!-- Повідомлення для користувачів без прав адміністратора -->
+        <div th:if="${!isAdmin}" class="warning-message">
+            <p style= "color: #b61d1d;" >Ви перебуваєте в режимі перегляду. Для внесення змін потрібні права адміністратора.</p>
+        </div>
+        
+        <!-- Таблиця для блоку -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Номер у списку</th>
+                    <th>Назва</th>
+                    <th th:if="${isAdmin}">Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="block : ${blocks}">
+                    <td th:text="${block.blockId}"></td>
+                    <td th:text="${block.blockName}"></td>
+                    <td th:if="${isAdmin}">
+                        <a th:href="@{/blocks/edit/{id}(id=${block.blockId})}" class="button edit">Редагувати</a>
+                        <a th:href="@{/blocks/delete/{id}(id=${block.blockId})}" class="button delete">Видалити</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <a href="/home" class="button back">Повернутися на головну сторінку</a>
+    </div>
+</body>
+</html>

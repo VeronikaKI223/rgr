@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Додати нову кімнату</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Додати нову кімнату</h1>
+        <form th:action="@{/rooms/add}" th:object="${room}" method="post" class="form-container">
+            <label for="roomNumber">Номер кімнати:</label>
+            <input type="text" id="roomNumber" th:field="*{roomNumber}" required />
+            <div th:if="${#fields.hasErrors('roomNumber')}" th:errors="*{roomNumber}" class="error"></div>
+
+            <label for="capacity">Скільки людей проживає:</label>
+            <input type="number" id="capacity" th:field="*{capacity}" required />
+            <div th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}" class="error"></div>
+
+            <label for="block">Блок:</label>
+            <select id="block" th:field="*{block.blockId}" required>
+                <option value="" disabled selected>Обрати блок</option>
+                <option th:each="block : ${blocks}" th:value="${block.blockId}" th:text="${block.blockName}"></option>
+            </select>
+            <div th:if="${#fields.hasErrors('block.blockId')}" th:errors="*{block.blockId}" class="error"></div>
+
+            <button type="submit" class="button">Зберегти</button>
+        </form>
+        <a href="/rooms" class="button back">Повернутися до загальної таблиці</a>
+    </div>
+</body>
+</html>

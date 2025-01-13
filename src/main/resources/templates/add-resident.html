@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Додати нового мешканця</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Додати нового мешканця</h1>
+        <form th:action="@{/residents/add}" th:object="${resident}" method="post" class="form-container">
+            <label for="fullName">ПІБ:</label>
+            <input type="text" id="fullName" th:field="*{fullName}" required />
+            <div th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="error"></div>
+
+            <label for="dateOfBirth">Дата народження:</label>
+            <input type="date" id="dateOfBirth" th:field="*{dateOfBirth}" required />
+            <div th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}" class="error"></div>
+
+            <label for="room">Кімната:</label>
+            <select id="room" th:field="*{room.roomId}" required>
+                <option value="" disabled selected>Обрати кімнату</option>
+                <option th:each="room : ${rooms}" th:value="${room.roomId}" th:text="${room.roomNumber}"></option>
+            </select>
+            <div th:if="${#fields.hasErrors('room.roomId')}" th:errors="*{room.roomId}" class="error"></div>
+
+            <button type="submit" class="button">Зберегти</button>
+        </form>
+        <a href="/residents" class="button back">Повернутися до загальної таблиці</a>
+    </div>
+</body>
+</html>
